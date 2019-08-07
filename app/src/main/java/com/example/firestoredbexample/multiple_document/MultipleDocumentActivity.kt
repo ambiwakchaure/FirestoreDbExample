@@ -70,9 +70,9 @@ class MultipleDocumentActivity : AppCompatActivity() {
     private fun loadNotes() {
 
         notebookRef
-//            .whereGreaterThanOrEqualTo("priority",2)
-//            .orderBy("priority",Query.Direction.DESCENDING)
-//            .limit(3)
+            .whereGreaterThanOrEqualTo("priority",2)
+            .orderBy("priority",Query.Direction.DESCENDING)
+            .limit(3)
             .get()
             .addOnSuccessListener {
                 var data = ""
