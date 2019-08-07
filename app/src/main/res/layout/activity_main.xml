@@ -33,10 +33,14 @@
         <Button android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/loadnote_btn"
-                android:layout_marginTop="6pt"
 
                 android:textAllCaps="false"
                 android:text="Load Note"/>
+        <Button android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/updatedesc_btn"
+                android:textAllCaps="false"
+                android:text="Update Description"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="2pt"

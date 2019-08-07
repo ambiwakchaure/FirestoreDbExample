@@ -28,6 +28,27 @@ class MainActivity : AppCompatActivity() {
 
             loadNotes()
         }
+        updatedesc_btn.setOnClickListener {
+
+            updateDescription()
+        }
+    }
+
+    //update description
+    private fun updateDescription() {
+
+        //get description
+        var description = desc_et.text.toString()
+
+        //method 1
+        //create note hashmap
+        /*var note = HashMap<String,Any>()
+        note.put(KEY_DESCRIPTION,description)
+        noteRef.set(note, SetOptions.merge()) //merge only descriptions*/
+
+        //method 2
+        noteRef.update(KEY_DESCRIPTION,description)
+
     }
 
     override fun onStart() {
