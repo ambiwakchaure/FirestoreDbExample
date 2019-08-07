@@ -23,41 +23,35 @@
                   android:imeOptions="actionNext"
                   android:layout_marginTop="6pt"
                   android:hint="Description"/>
+        <EditText android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/priority_et"
+                  android:imeOptions="actionNext"
+                  android:layout_marginTop="6pt"
+                  android:hint="Priority"/>
         <Button android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/submit_btn"
+                android:id="@+id/addnote_btn"
                 android:layout_marginTop="6pt"
 
                 android:textAllCaps="false"
-                android:text="Submit"/>
+                android:text="Add"/>
         <Button android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/loadnote_btn"
+                android:id="@+id/loadnotes_btn"
 
                 android:textAllCaps="false"
-                android:text="Load Note"/>
-        <Button android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/updatedesc_btn"
-                android:textAllCaps="false"
-                android:text="Update Description"/>
+                android:text="Load"/>
 
-        <Button android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/deletedesc_btn"
-                android:textAllCaps="false"
-                android:text="Delete Description"/>
 
-        <Button android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/deletenote_btn"
-                android:textAllCaps="false"
-                android:text="Delete Note"/>
+        <android.support.v4.widget.NestedScrollView android:layout_width="fill_parent"
+                                                    android:layout_height="match_parent">
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="2pt"
-                  android:id="@+id/text_view_data"/>
+            <TextView android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/text_view_data"/>
+        </android.support.v4.widget.NestedScrollView>
+
 
     </LinearLayout>
 

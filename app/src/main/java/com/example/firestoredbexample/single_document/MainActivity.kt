@@ -1,7 +1,10 @@
-package com.example.firestoredbexample
+package com.example.firestoredbexample.single_document
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.firestoredbexample.R
+import com.example.firestoredbexample.dataclass.Note
+import com.example.firestoredbexample.toast
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -88,9 +91,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 if(it!!.exists()){
 
-                    var title = it.getString(KEY_TITLE)
-                    var description = it.getString(KEY_DESCRIPTION)
+                    //method 2 using custom object
+                    var note = it.toObject(Note::class.java)
+                    var title = note.getTitle()
+                    var description = note.getDescription()
                     text_view_data.setText("Title : "+title+"\nDescription : "+description)
+
+                    //method 1
+                    /*var title = it.getString(KEY_TITLE)
+                    var description = it.getString(KEY_DESCRIPTION)
+                    text_view_data.setText("Title : "+title+"\nDescription : "+description)*/
                 }
                 else
                 {
@@ -111,9 +121,17 @@ class MainActivity : AppCompatActivity() {
 
                 if(it.exists()){
 
-                    var title = it.getString(KEY_TITLE)
-                    var description = it.getString(KEY_DESCRIPTION)
+                    //method 2
+                    var note = it.toObject(Note::class.java)
+
+                    var title = note.getTitle()
+                    var description = note.getDescription()
                     text_view_data.setText("Title : "+title+"\nDescription : "+description)
+
+                    //method 1
+                    /*var title = it.getString(KEY_TITLE)
+                    var description = it.getString(KEY_DESCRIPTION)
+                    text_view_data.setText("Title : "+title+"\nDescription : "+description)*/
                 }
                 else{
                     toast("Document not exists")
@@ -121,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
 
-                error(it.toString())
+                com.example.firestoredbexample.error(it.toString())
             }
     }
 
@@ -131,8 +149,9 @@ class MainActivity : AppCompatActivity() {
         var title = title_et.text.toString()
         var description = desc_et.text.toString()
 
-        //create note hashmap
-        var note = HashMap<String,Any>()
+
+        //method 1
+        /*var note = HashMap<String,Any>()
         note.put(KEY_TITLE,title)
         note.put(KEY_DESCRIPTION,description)
 
@@ -146,6 +165,19 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener {
 
                 error(it.toString())
+            }*/
+
+        //method 2
+        var note = Note(title,description)
+        noteRef
+            .set(note)
+            .addOnSuccessListener {
+
+                toast("Note saved")
+            }
+            .addOnFailureListener {
+
+                com.example.firestoredbexample.error(it.toString())
             }
     }
 }
