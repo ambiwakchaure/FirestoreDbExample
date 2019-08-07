@@ -41,6 +41,19 @@
                 android:id="@+id/updatedesc_btn"
                 android:textAllCaps="false"
                 android:text="Update Description"/>
+
+        <Button android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deletedesc_btn"
+                android:textAllCaps="false"
+                android:text="Delete Description"/>
+
+        <Button android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deletenote_btn"
+                android:textAllCaps="false"
+                android:text="Delete Note"/>
+
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="2pt"

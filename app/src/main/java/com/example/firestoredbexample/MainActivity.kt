@@ -32,7 +32,31 @@ class MainActivity : AppCompatActivity() {
 
             updateDescription()
         }
+        deletedesc_btn.setOnClickListener {
+
+            deleteDescription()
+        }
+        deletenote_btn.setOnClickListener {
+
+            deleteNote()
+        }
     }
+
+    private fun deleteNote() {
+        noteRef.delete()
+    }
+    private fun deleteDescription() {
+
+        //create note hashmap
+        //method 1
+       /* var note = HashMap<String,Any>()
+        note.put(KEY_DESCRIPTION,FieldValue.delete())
+        noteRef.update(note)*/
+
+        //method 2
+        noteRef.update(KEY_DESCRIPTION,FieldValue.delete())//.addOnSuccessListener()//we can it also
+    }
+
 
     //update description
     private fun updateDescription() {
@@ -67,6 +91,10 @@ class MainActivity : AppCompatActivity() {
                     var title = it.getString(KEY_TITLE)
                     var description = it.getString(KEY_DESCRIPTION)
                     text_view_data.setText("Title : "+title+"\nDescription : "+description)
+                }
+                else
+                {
+                    text_view_data.setText("")
                 }
             }
         })
