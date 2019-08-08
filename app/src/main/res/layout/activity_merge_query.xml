@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+
+        tools:context=".single_document.MainActivity">
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_margin="20pt"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:layout_height="fill_parent">
+        <EditText android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/title_et"
+                  android:imeOptions="actionNext"
+                  android:hint="Title"/>
+        <EditText android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/desc_et"
+                  android:imeOptions="actionNext"
+                  android:layout_marginTop="6pt"
+                  android:hint="Description"/>
+        <EditText android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/priority_et"
+                  android:imeOptions="actionNext"
+                  android:layout_marginTop="6pt"
+                  android:hint="Priority"/>
+        <Button android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addnote_btn"
+                android:layout_marginTop="6pt"
+
+                android:textAllCaps="false"
+                android:text="Add"/>
+        <Button android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loadnotes_btn"
+
+                android:textAllCaps="false"
+                android:text="Load"/>
+
+
+        <android.support.v4.widget.NestedScrollView android:layout_width="fill_parent"
+                                                    android:layout_height="match_parent">
+
+            <TextView android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/text_view_data"/>
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+
+    <ProgressBar android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="invisible"
+                 android:layout_centerVertical="true"
+                 android:layout_centerHorizontal="true"
+                 android:id="@+id/progress_bar"/>
+</RelativeLayout>
