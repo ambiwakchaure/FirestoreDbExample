@@ -1,14 +1,12 @@
-package com.example.firestoredbexample.single_document
+package com.example.firestoredbexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.firestoredbexample.R
 import com.example.firestoredbexample.dataclass.Note
-import com.example.firestoredbexample.toast
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class CrudActivity : AppCompatActivity() {
 
     var KEY_TITLE = "title"
     var KEY_DESCRIPTION = "description"
@@ -93,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
                     //method 2 using custom object
                     var note = it.toObject(Note::class.java)
-                    var title = note.getTitle()
+                    var title = note!!.getTitle()
                     var description = note.getDescription()
                     text_view_data.setText("Title : "+title+"\nDescription : "+description)
 
@@ -124,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                     //method 2
                     var note = it.toObject(Note::class.java)
 
-                    var title = note.getTitle()
+                    var title = note!!.getTitle()
                     var description = note.getDescription()
                     text_view_data.setText("Title : "+title+"\nDescription : "+description)
 
@@ -139,7 +137,7 @@ class MainActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
 
-                com.example.firestoredbexample.error(it.toString())
+                error(it.toString())
             }
     }
 
@@ -177,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
 
-                com.example.firestoredbexample.error(it.toString())
+                error(it.toString())
             }
     }
 }

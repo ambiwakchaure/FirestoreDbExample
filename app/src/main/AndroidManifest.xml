@@ -11,17 +11,24 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".mergetask_tocreate_orqueries.PaginationActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".multiple_document.MultipleDocumentActivity">
-
+        <activity android:name=".SubCollectionsActivity">
         </activity>
-        <activity android:name=".single_document.MainActivity">
+        <activity android:name=".TransactionActivity">
+        </activity>
+        <activity android:name=".BachWriteActivity">
+        </activity>
+        <activity android:name=".PaginationActivity">
+        </activity>
+        <activity android:name=".MultipleDocumentActivity">
+        </activity>
+        <activity android:name=".CrudActivity">
         </activity>
     </application>
 

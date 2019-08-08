@@ -1,14 +1,12 @@
-package com.example.firestoredbexample.mergetask_tocreate_orqueries
+package com.example.firestoredbexample
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.firestoredbexample.R
+import android.os.Bundle
 import com.example.firestoredbexample.dataclass.NoteMultiple
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.activity_merge_query.*
+import kotlinx.android.synthetic.main.activity_bach_write.*
 
-class PaginationActivity : AppCompatActivity() {
-
+class BachWriteActivity : AppCompatActivity() {
 
     //get firestore instance
     var db = FirebaseFirestore.getInstance()
@@ -21,8 +19,9 @@ class PaginationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_merge_query)
+        setContentView(R.layout.activity_bach_write)
 
+        supportActionBar!!.setTitle("Batch Write")
         addnote_btn.setOnClickListener {
 
             addNote()
@@ -32,42 +31,36 @@ class PaginationActivity : AppCompatActivity() {
             loadNotes()
         }
 
+        executeBatchWrite()
+
     }
-    override fun onStart() {
-        super.onStart()
 
-        notebookRef.addSnapshotListener(this,object : EventListener<QuerySnapshot>{
-            override fun onEvent(querySnapshot: QuerySnapshot?, firebaseFirestoreException: FirebaseFirestoreException?) {
+    private fun executeBatchWrite() {
 
-                if(firebaseFirestoreException != null){
-                    return
-                }
-                //contain only changed document
-                //so we dont go to the whole dataset document
-                for(dc in querySnapshot!!.documentChanges)
-                {
-                    var documentSnapshot = dc.document
+        var batch = db.batch()
+        //create document reference
+        var doc1 = notebookRef.document("New Note")
+        batch.set(doc1,NoteMultiple(1,"Title 1","Description 1"))
 
-                    var documentId = documentSnapshot.id
-                    var oldIndex = dc.oldIndex
-                    var newIndex = dc.newIndex
+        var doc2 = notebookRef.document("4f50L8NpBoMByg6DrI5y")
+        batch.update(doc2,"title","Updated Note")
 
-                    when(dc.type){
-                        DocumentChange.Type.ADDED ->
-                            text_view_data.append("\nAdded : "+documentId+"\nOld Index : "+oldIndex+"\nNew Index : "+newIndex)
-                        DocumentChange.Type.MODIFIED ->
-                            text_view_data.append("\nModified : "+documentId+"\nOld Index : "+oldIndex+"\nNew Index : "+newIndex)
-                        DocumentChange.Type.REMOVED ->
-                            text_view_data.append("\nRemoved : "+documentId+"\nOld Index : "+oldIndex+"\nNew Index : "+newIndex)
-                    }
-                }
+        var doc3 = notebookRef.document("4f50L8NpBoMByg6DrI5y")
+        batch.delete(doc3)
 
+        var doc4 = notebookRef.document()
+        batch.set(doc4,NoteMultiple(1,"Added Note","Added Note"))
+
+        batch
+            .commit()
+            .addOnSuccessListener {
+                text_view_data.setText("")
             }
-
-        })
-
-
+            .addOnFailureListener {
+                text_view_data.setText(""+it.toString())
+            }
     }
+
     private fun loadNotes() {
 
 
@@ -112,7 +105,7 @@ class PaginationActivity : AppCompatActivity() {
                     var note = it.documents.get(i).toObject(NoteMultiple::class.java)
 
                     var documentId = it.documents.get(i).id
-                    var title = note.getTitle()
+                    var title = note!!.getTitle()
                     var description = note.getDescription()
                     var priority = note.getPriority()
 

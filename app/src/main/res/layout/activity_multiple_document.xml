@@ -6,7 +6,7 @@
         android:layout_height="fill_parent"
 
 
-        tools:context=".single_document.MainActivity">
+        tools:context=".CrudActivity">
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_margin="20pt"
                   android:orientation="vertical"

@@ -1,11 +1,8 @@
-package com.example.firestoredbexample.multiple_document
+package com.example.firestoredbexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.firestoredbexample.R
-import com.example.firestoredbexample.dataclass.Note
 import com.example.firestoredbexample.dataclass.NoteMultiple
-import com.example.firestoredbexample.toast
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_multiple_document.*
 
@@ -53,7 +50,7 @@ class MultipleDocumentActivity : AppCompatActivity() {
 
 
                     var documentId = querySnapshot.documents.get(i).id
-                    var title = note.getTitle()
+                    var title = note!!.getTitle()
                     var description = note.getDescription()
                     var priority = note.getPriority()
 
@@ -82,7 +79,7 @@ class MultipleDocumentActivity : AppCompatActivity() {
                     var note = it.documents.get(i).toObject(NoteMultiple::class.java)
 
                     var documentId = it.documents.get(i).id
-                    var title = note.getTitle()
+                    var title = note!!.getTitle()
                     var description = note.getDescription()
                     var priority = note.getPriority()
 
